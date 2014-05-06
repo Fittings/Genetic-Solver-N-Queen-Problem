@@ -15,8 +15,11 @@ class NQueens:
         
     def random_set_up(self):
         self.board = []
+        for i in (0, self.queen_count):
+            self.board.insert(i, self.get_position_key)
+        
 
-    def set_position_key(self):
+    def get_position_key(self):
         random_key = random.SystemRandom()
         position_key = random_key.randint(10 ** self.queen_count)
 
