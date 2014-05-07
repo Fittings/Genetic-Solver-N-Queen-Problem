@@ -1,1 +1,8 @@
-The board list is going to be comprised of dictionaries. This will have the position and the key value that links to that key. eg pos 7 = 001240
+1) Need to set-up a way of testing the fitness of the queen. This can be done
+   by assessing its collisions.
+      1.1) Need a way to assess collisions with other queens!
+
+2) Need to have a way of keep our 'best' queens and replacing the 'worst' queens with a cross-over / mutation combo
+
+3) Need to implement a cross-over between parents (uniquely) and also mutate
+

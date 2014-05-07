@@ -1,7 +1,12 @@
 n-Queen-Problem
 ===============
+The n Queen problem is to find a solution such that n queens are placed on
+a board who are not immediately attacking one another. (As per chess rules).
 
-A solution to the n-Queen chess problem. This is where no queen can be placed on the board in such a way any queen can directly attack.
+This program finds a solution to the n queen problem by picking queens that are
+almost in a good position, and replacing the badly positioned queens with a
+combination of the 'good' queens.
+
 
 Python
 =======
