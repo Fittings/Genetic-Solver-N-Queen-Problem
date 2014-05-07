@@ -1,3 +1,5 @@
+0) The number wrapping isn't working properly!
+
 1) Need to set-up a way of testing the fitness of the queen. This can be done
    by assessing its collisions.
       1.1) Need a way to assess collisions with other queens!
