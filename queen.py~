@@ -1,0 +1,9 @@
+import random
+
+class Queen:
+
+    # Initializes a queen with default values
+    def __init__(self, x_position):
+        self.y_key = self.generate_position_key()
+        self.x_postion = x_postion
+        self.y_position = 

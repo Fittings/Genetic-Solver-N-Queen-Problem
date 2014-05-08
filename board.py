@@ -4,7 +4,7 @@
 # n-Queen Problem - cosc343 assignment 2
 
 import random
-import queens
+#import queen
 
 class NQueensBoard:
     'This class is used to create a nxn chessboard and ' \
@@ -32,7 +32,7 @@ class NQueensBoard:
                     x_array.append("-1")
             self.board.append( x_array)
             
-                                
+    #ZZZ                            
     # Generates a random int and returns as a string to represent the queens
     # row position on the board.
     def generate_position_key(self):
@@ -40,7 +40,7 @@ class NQueensBoard:
         position_key = random_key.randint(0, 10 ** self.queen_count)
         return str(position_key)
         
-
+    #ZZZ 
     # Returns the position of the queen in the given column.
     def get_position(self, position_key):
         temp_string = position_key
@@ -55,13 +55,14 @@ class NQueensBoard:
 
 
 
-        
+    #ZZZ    
     # Makes a list of the queens in order of fitness. Queens are identified by their
     # x co-ordinate.
     def set_queen_priorities():
         for i in range(0, self.queen_count):
+            pass
             
-        
+    #ZZZ    
     # Returns the number of collisions with other queens based on possible queen movement
     def get_queen_collisions(self, column):
         pass
