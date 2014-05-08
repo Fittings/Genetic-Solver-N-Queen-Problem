@@ -18,7 +18,7 @@ class NQueens:
     # Sets the board with queens placed on every column with random
     # row positions
     def random_set_up(self):
-        print "This is the %d-Queen problem!" % self.queen_count
+        print "This is the %d-Queen problem!\n" % self.queen_count
         self.board = []
         for x in range(0, self.queen_count):
             x_array = []

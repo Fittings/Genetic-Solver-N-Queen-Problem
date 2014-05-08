@@ -4,7 +4,7 @@
 # n-Queen Problem - cosc343 assignment 2
 import NQueens
 
-queen_count = 1000
+queen_count = int(raw_input("How many queens? \n"))
 
 eight = NQueens.NQueens(queen_count)
 sum = 0
