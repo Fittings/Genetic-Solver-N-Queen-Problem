@@ -53,8 +53,13 @@ class NQueens:
         return int(temp_string) % self.queen_count
 
 
+
+        
     # Makes a list of the queens in order of fitness. Queens are identified by their
     # x co-ordinate.
+    def set_queen_priorities():
+        for i in range(0, self.queen_count):
+            
         
     # Returns the number of collisions with other queens based on possible queen movement
     def get_queen_collisions(self, column):

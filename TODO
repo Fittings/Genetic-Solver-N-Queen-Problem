@@ -7,3 +7,14 @@
 
 3) Need to implement a cross-over between parents (uniquely) and also mutate
 
+
+
+
+================
+
+I'm thinking at this point, I should have created a Queen class. The queen class
+would be used to store data about each queen (x,y co-ords, y-key, fitness level)
+and then ;)
+At the moment, every queen is identified by their y-key value, which means I have
+to constantly refer to methods that are able to extract more info out of it.
+
