@@ -7,3 +7,10 @@
 
 3) Need to implement a cross-over between parents (uniquely) and also mutate
 
+
+
+======
+
+X) To fix an error with the n-queen problems 0f 25-99~. 250-999~, etc... I
+suggest increasing the length of the key by a way higher value than what I have
+previously been increasing it by. 

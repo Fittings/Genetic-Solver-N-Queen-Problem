@@ -17,7 +17,7 @@ class NQueensBoard:
         self.random_set_up()
 
     # Sets the board with queens placed on every column with random
-    # row positions
+    # row positions. Also initializes the queen 'priority' list
     def random_set_up(self):
         print "This is the %d-Queen problem!\n" % self.queen_count
         self.board = []
@@ -28,12 +28,12 @@ class NQueensBoard:
             queen_y = self.get_position(queen_key) #y-coord of the queen
             for y in range(0, self.queen_count):
                 if (y == queen_y):
-                    x_list.append(queen.Queen(x, queen_y, queen_key))
-                    
+                    temp_queen = queen.Queen(x, queen_y, queen_key)
+                    x_list.append(queen)
+                    self.queen_priority.append(temp_queen)
                 else:
                     x_list.append("0")
             self.board.append( x_list)
-            self.queen_priority.append(self.board[x][y])
             
     #ZZZ                            
     # Generates a random int and returns as a string to represent the queens
@@ -59,23 +59,26 @@ class NQueensBoard:
 
 
     #ZZZ    
-    # Makes a list of the queens in order of fitness. Queens are identified by their
-    # x co-ordinate.
+    # Makes a list of the queens in order of fitness. Queens are identified
+    # by their x co-ordinate.
     def set_queen_priorities():
         for i in range(0, self.queen_count):
             pass
             
     #ZZZ    
-    # Returns the number of collisions with other queens based on possible queen movement
+    # Returns the number of collisions with other queens based on possible queen
+    # movement
     def get_queen_collisions(self, column):
         pass
         
                 
         
-
-    #def print_queen_order(self):
-    #    for i in range(0, self.queen_count):
-    #        print ""
+    # Prints the queens in order of current priority.
+    def print_queen_order(self):
+        
+        for i in range(0, self.queen_count):
+            print("[%d]Queen: " % i),
+            self.queen_priority[i].print_queen()
 
     
     # Prints a visual-representation of the board and queens

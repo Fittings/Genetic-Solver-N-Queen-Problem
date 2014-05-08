@@ -12,4 +12,5 @@ queen_count = 8
 #else:
 myboard = board.NQueensBoard(queen_count)
 myboard.print_board()
+myboard.print_queen_order()
 
