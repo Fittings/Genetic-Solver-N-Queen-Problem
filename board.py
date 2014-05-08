@@ -4,8 +4,9 @@
 # n-Queen Problem - cosc343 assignment 2
 
 import random
+import queens
 
-class NQueens:
+class NQueensBoard:
     'This class is used to create a nxn chessboard and ' \
         '"evolve" a non-conflicting solution of Queen Placements'
 
