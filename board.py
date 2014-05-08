@@ -58,12 +58,20 @@ class NQueensBoard:
 
 
 
-    #ZZZ    
-    # Makes a list of the queens in order of fitness. Queens are identified
-    # by their x co-ordinate.
+    #ZZZ  MAY NEED TO CHANGE < to > based on how I decide my fitness~  
+    # Makes a list of the queens in order of fitness. 
     def set_queen_priorities():
         for i in range(0, self.queen_count):
-            pass
+            best_queen = self.queen_priority[i]
+            for j in range(0, self.queen_count):
+                if (self.queen_priority[i].priority
+                    < self.queen_priority[j].priority):
+                    self.queen_priority[i] = self.queen_priority[j]
+                    self.queen_priority[j] = best_queen
+                    best = self.queen_priority[i]
+                    
+                    
+                
             
     #ZZZ    
     # Returns the number of collisions with other queens based on possible queen
