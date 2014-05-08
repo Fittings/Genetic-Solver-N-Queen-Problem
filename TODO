@@ -1,6 +1,7 @@
 1) Need to set-up a way of testing the fitness of the queen. This can be done
    by assessing its collisions.
       1.1) Need a way to assess collisions with other queens!
+      1.2) Make a list of queens in desc. order of fitness.
 
 2) Need to have a way of keep our 'best' queens and replacing the 'worst' queens with a cross-over / mutation combo
 

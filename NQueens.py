@@ -23,7 +23,7 @@ class NQueens:
         for x in range(0, self.queen_count):
             x_array = []
             queen_key = self.generate_position_key()   
-            queen_y = self.get_position(queen_key) #y-coord of queen
+            queen_y = self.get_position(queen_key) #y-coord of the queen
             for y in range(0, self.queen_count):
                 if (y == queen_y):
                     x_array.append(queen_key)
