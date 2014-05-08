@@ -4,7 +4,7 @@
 # n-Queen Problem - cosc343 assignment 2
 
 import random
-#import queen
+import queen
 
 class NQueensBoard:
     'This class is used to create a nxn chessboard and ' \
@@ -21,16 +21,19 @@ class NQueensBoard:
     def random_set_up(self):
         print "This is the %d-Queen problem!\n" % self.queen_count
         self.board = []
+        self.queen_priority = []
         for x in range(0, self.queen_count):
-            x_array = []
+            x_list = [] #The '2d' part of the list
             queen_key = self.generate_position_key()   
             queen_y = self.get_position(queen_key) #y-coord of the queen
             for y in range(0, self.queen_count):
                 if (y == queen_y):
-                    x_array.append(queen_key)
+                    x_list.append(queen.Queen(x, queen_y, queen_key))
+                    
                 else:
-                    x_array.append("-1")
-            self.board.append( x_array)
+                    x_list.append("0")
+            self.board.append( x_list)
+            self.queen_priority.append(self.board[x][y])
             
     #ZZZ                            
     # Generates a random int and returns as a string to represent the queens
@@ -70,15 +73,20 @@ class NQueensBoard:
                 
         
 
+    #def print_queen_order(self):
+    #    for i in range(0, self.queen_count):
+    #        print ""
+
+    
     # Prints a visual-representation of the board and queens
     def print_board(self):
         for y in range(0, self.queen_count):
             row_string = ''
             for x in range(0, self.queen_count):
-                if (int(self.board[x][y]) > 0):
-                    row_string += 'Q '
-                else:
+                if (self.board[x][y] == "0"):
                     row_string += '- '
+                else:
+                    row_string += 'Q '
             print row_string
                     
 
