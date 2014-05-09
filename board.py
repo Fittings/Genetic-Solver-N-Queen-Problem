@@ -133,7 +133,8 @@ class NQueensBoard:
     # for the 'unfit' queens
     def evolve_queens(self):
         #use the strong queens to replace the week queens
-        for i in range(0, self.queen_count):
+        pass
+                    
             
             
     def queen_crossover(self, queen1, queen2):
