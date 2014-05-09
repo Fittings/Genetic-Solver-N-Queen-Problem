@@ -81,9 +81,9 @@ class NQueensBoard:
             print i
             test_queen = self.queen_priority[i]
             queen_collisions = 0
-            
-            #Test Horizontal
 
+            """
+            #Test Horizontal #ZZZ Works!
             x = (test_queen.x_position +1) % self.queen_count
             y = test_queen.y_position
             while (x != test_queen.x_position):
@@ -91,11 +91,45 @@ class NQueensBoard:
                     queen_collisions += 1
                 x = (x+1) % self.queen_count
             
+            #Test Diagonal up right #ZZZ Works!
+            x = test_queen.x_position
+            y = test_queen.y_position
+            while True:
+                x += 1
+                y -= 1
+                if (x > (self.queen_count-1) or y < 0):
+                    #This allows us to loop diagonally.
+                    temp = x-1
+                    x = y+1
+                    y = temp
+                if (x == test_queen.x_position):
+                    #If we arrive at origin position, break loop
+                    break
+                if (self.board[x][y] != "0"):
+                    queen_collisions += 1
+            """
+            #Test Diagonal down right
+            x = test_queen.x_position
+            y = test_queen.y_position
+            while True:
+                x += 1
+                y -= 1
+                if (x > (self.queen_count-1) or y < 0):
+                    #This allows us to loop diagonally.
+                    temp = x-1
+                    x = y+1
+                    y = temp
+                if (x == test_queen.x_position):
+                    #If we arrive at origin position, break loop
+                    break
+                if (self.board[x][y] != "0"):
+                    queen_collisions += 1
                         
             print "Collisions: %d" % queen_collisions
             #Give our queen her fitness count
             test_queen.set_fitness(float(queen_collisions) / self.queen_count)
-            self.set_queen_priorities()
+
+            #self.set_queen_priorities()
         
     # Prints the queens in order of current priority.
     def print_queen_order(self):
