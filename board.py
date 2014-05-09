@@ -58,14 +58,14 @@ class NQueensBoard:
 
 
 
-    #ZZZ  MAY NEED TO CHANGE < to > based on how I decide my fitness~  
+    #ZZZ  DELETING MY QUEENS ;(
     # Makes a list of the queens in order of fitness. 
-    def set_queen_priorities():
+    def set_queen_priorities(self):
         for i in range(0, self.queen_count):
             best_queen = self.queen_priority[i]
             for j in range(0, self.queen_count):
-                if (self.queen_priority[i].priority
-                    < self.queen_priority[j].priority):
+                if (self.queen_priority[i].fitness
+                    < self.queen_priority[j].fitness):
                     self.queen_priority[i] = self.queen_priority[j]
                     self.queen_priority[j] = best_queen
                     best = self.queen_priority[i]
@@ -76,14 +76,29 @@ class NQueensBoard:
     #ZZZ    
     # Returns the number of collisions with other queens based on possible queen
     # movement
-    def get_queen_collisions(self, column):
-        pass
-        
-                
+    def get_queen_fitness(self):
+        for i in range(0, self.queen_count):
+            print i
+            test_queen = self.queen_priority[i]
+            queen_collisions = 0
+            
+            #Test Horizontal
+
+            x = (test_queen.x_position +1) % self.queen_count
+            y = test_queen.y_position
+            while (x != test_queen.x_position):
+                if (self.board[x][y] != "0"):
+                    queen_collisions += 1
+                x = (x+1) % self.queen_count
+            
+                        
+            print "Collisions: %d" % queen_collisions
+            #Give our queen her fitness count
+            test_queen.set_fitness(float(queen_collisions) / self.queen_count)
+            self.set_queen_priorities()
         
     # Prints the queens in order of current priority.
     def print_queen_order(self):
-        
         for i in range(0, self.queen_count):
             print("[%d]Queen: " % i),
             self.queen_priority[i].print_queen()
