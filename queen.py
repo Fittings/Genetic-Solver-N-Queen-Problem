@@ -28,4 +28,6 @@ class Queen:
                                                          self.y_position,
                                                          self.y_key,
                                                          self.fitness))
-        
+
+
+    

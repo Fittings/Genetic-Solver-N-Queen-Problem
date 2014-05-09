@@ -1,3 +1,5 @@
+My current solution is trying to find the optimal position of the individual queen. This becomes a problem when trying to find the optimal position of all the queens. So Im probably going to have to redo a significant portion of my work soon. :(
+
 Because of the way numbers are counted, the greater deviance (percentage wise)
 from the length of the y value (eg 20 => 2, 100 => 3), the greater deviance the
 y value average is from the true~ y value.

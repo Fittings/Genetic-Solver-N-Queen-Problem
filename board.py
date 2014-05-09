@@ -7,7 +7,7 @@ import random
 import queen
 
 class NQueensBoard:
-    'This class is used to create a nxn chessboard and ' \
+    'This class is used to create a n x n chessboard and ' \
         '"evolve" a non-conflicting solution of Queen Placements'
 
         
@@ -19,7 +19,7 @@ class NQueensBoard:
     # Sets the board with queens placed on every column with random
     # row positions. Also initializes the queen 'priority' list
     def random_set_up(self):
-        print "This is the %d-Queen problem!\n" % self.queen_count
+        print "\nThis is the %d-Queen problem!\n" % self.queen_count
         self.board = []
         self.queen_priority = []
         for x in range(0, self.queen_count):
@@ -44,7 +44,7 @@ class NQueensBoard:
         position_key = random_key.randint(0, 100 ** self.queen_count)
         return str(position_key)
         
-    #ZZZ 
+
     # Returns the position of the queen in the given column.
     def get_position(self, position_key):
         temp_string = position_key
@@ -58,8 +58,6 @@ class NQueensBoard:
         return int(temp_string) % self.queen_count
 
 
-
-    #ZZZ  DELETING MY QUEENS ;(
     # Makes a list of the queens in order of fitness. 
     def set_queen_priorities(self):
         for i in range(0, self.queen_count):
@@ -128,11 +126,32 @@ class NQueensBoard:
                         
             #Give our queen her fitness count
             test_queen.set_fitness(float(queen_collisions) / self.queen_count)
-
-        self.print_queen_order() #ZZZ
         self.set_queen_priorities()
 
-        print "==============" #ZZZ
+        
+    # This will use cross-over and mutation to create new queen positions
+    # for the 'unfit' queens
+    def evolve_queens(self):
+        #use the strong queens to replace the week queens
+        for i in range(0, self.queen_count):
+            
+            
+    def queen_crossover(self, queen1, queen2):
+        crossover_point = random_key.randint(0, len(queen1.y_key))
+        new_key = queen1.y_key[:crossover_point]
+        new_key += queen2.y_key[crossover_point:]
+        return new_key
+        
+        
+
+
+
+        
+
+    #====Prints====#
+        
+            
+
         
     # Prints the queens in order of current priority.
     def print_queen_order(self):
@@ -144,13 +163,14 @@ class NQueensBoard:
     # Prints a visual-representation of the board and queens
     def print_board(self):
         for y in range(0, self.queen_count):
-            row_string = ''
+            row_string = '    '
             for x in range(0, self.queen_count):
                 if (self.board[x][y] == "0"):
                     row_string += '- '
                 else:
                     row_string += 'Q '
             print row_string
+        print 
                     
 
 
