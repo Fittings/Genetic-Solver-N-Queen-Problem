@@ -1,5 +1,0 @@
-Because of the way numbers are counted, the greater deviance (percentage wise)
-from the length of the y value (eg 20 => 2, 100 => 3), the greater deviance the
-y value average is from the true~ y value.
-This isn't too big of an issue for anything in ranges such as (0, ~20] or
-[100, ~200]
