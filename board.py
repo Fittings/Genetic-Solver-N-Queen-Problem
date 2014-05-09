@@ -73,7 +73,7 @@ class NQueensBoard:
                     
                 
             
-    #ZZZ    
+    #ZZZ Collision detecting is working! :)
     # Returns the number of collisions with other queens based on possible queen
     # movement
     def get_queen_fitness(self):
@@ -82,7 +82,6 @@ class NQueensBoard:
             test_queen = self.queen_priority[i]
             queen_collisions = 0
 
-            """
             #Test Horizontal #ZZZ Works!
             x = (test_queen.x_position +1) % self.queen_count
             y = test_queen.y_position
@@ -107,18 +106,19 @@ class NQueensBoard:
                     break
                 if (self.board[x][y] != "0"):
                     queen_collisions += 1
-            """
-            #Test Diagonal down right
+            #Test Diagonal down right #ZZZ Works!
             x = test_queen.x_position
             y = test_queen.y_position
             while True:
                 x += 1
-                y -= 1
-                if (x > (self.queen_count-1) or y < 0):
+                y += 1
+                if (x > (self.queen_count-1)):
                     #This allows us to loop diagonally.
-                    temp = x-1
-                    x = y+1
-                    y = temp
+                    x = x-y
+                    y = 0
+                if (y > (self.queen_count-1)):
+                    y = y-x
+                    x = 0
                 if (x == test_queen.x_position):
                     #If we arrive at origin position, break loop
                     break
