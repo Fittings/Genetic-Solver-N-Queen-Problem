@@ -36,7 +36,7 @@ class NQueens:
     # row position on the board.
     def generate_position_key(self):
         random_key = random.SystemRandom()
-        position_key = random_key.randint(0, 10 ** self.queen_count)
+        position_key = random_key.randint(0, 10 ** self.queen_count) #XXX
         return str(position_key)
         
 

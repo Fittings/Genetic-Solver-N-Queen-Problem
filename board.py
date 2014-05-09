@@ -35,12 +35,13 @@ class NQueensBoard:
                     x_list.append("0")
             self.board.append( x_list)
             
-    #ZZZ                            
+    #ZZZ we have a magic number in determining the length of the key. This
+    #ZZZ length may be a fix to some issues for me.
     # Generates a random int and returns as a string to represent the queens
     # row position on the board.
     def generate_position_key(self):
         random_key = random.SystemRandom()
-        position_key = random_key.randint(0, 10 ** self.queen_count)
+        position_key = random_key.randint(0, 100 ** self.queen_count)
         return str(position_key)
         
     #ZZZ 
@@ -68,7 +69,7 @@ class NQueensBoard:
                     < self.queen_priority[j].fitness):
                     self.queen_priority[i] = self.queen_priority[j]
                     self.queen_priority[j] = best_queen
-                    best = self.queen_priority[i]
+                    best_queen = self.queen_priority[i]
                     
                     
                 
@@ -78,7 +79,6 @@ class NQueensBoard:
     # movement
     def get_queen_fitness(self):
         for i in range(0, self.queen_count):
-            print i
             test_queen = self.queen_priority[i]
             queen_collisions = 0
 
@@ -117,6 +117,7 @@ class NQueensBoard:
                     x = x-y
                     y = 0
                 if (y > (self.queen_count-1)):
+                    #This allows us to loop diagonally.
                     y = y-x
                     x = 0
                 if (x == test_queen.x_position):
@@ -125,11 +126,13 @@ class NQueensBoard:
                 if (self.board[x][y] != "0"):
                     queen_collisions += 1
                         
-            print "Collisions: %d" % queen_collisions
             #Give our queen her fitness count
             test_queen.set_fitness(float(queen_collisions) / self.queen_count)
 
-            #self.set_queen_priorities()
+        self.print_queen_order() #ZZZ
+        self.set_queen_priorities()
+
+        print "==============" #ZZZ
         
     # Prints the queens in order of current priority.
     def print_queen_order(self):

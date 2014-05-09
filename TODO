@@ -1,7 +1,3 @@
-1) Need to set-up a way of testing the fitness of the queen. This can be done
-   by assessing its collisions.
-      1.1) Need a way to assess collisions with other queens!
-      1.2) Make a list of queens in desc. order of fitness.
 
 2) Need to have a way of keep our 'best' queens and replacing the 'worst' queens with a cross-over / mutation combo
 
@@ -11,6 +7,7 @@
 
 ======
 
-X) To fix an error with the n-queen problems 0f 25-99~. 250-999~, etc... I
-suggest increasing the length of the key by a way higher value than what I have
-previously been increasing it by. 
+X) To fix an error with the n-queen problems 0f 25-99~. 250-999~, etc...
+##I suggest increasing the length of the key by a way higher value than what I have previously been increasing it by.
+##This does work, but the number has to be increased by such a significant amount that it is NOT a worthwhile approach to fixing lifes problems.
+To fix this I will need to look at the under-lying string which represents the number and calculate it differently. However it isn't overly neccessary so dw! (4now)
