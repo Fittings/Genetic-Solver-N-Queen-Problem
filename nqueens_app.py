@@ -12,6 +12,6 @@ queen_count = 8
 #else:
 myboard = board.NQueensBoard(queen_count)
 myboard.print_board()
-myboard.get_queen_fitness()
+print myboard.get_board_fitness()
 myboard.print_queen_order()
 

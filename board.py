@@ -33,8 +33,9 @@ class NQueensBoard:
                     self.queen_priority.append(temp_queen)
                 else:
                     x_list.append("0")
-            self.board.append( x_list)
-            
+            self.board.append(x_list)
+
+    #ZZZ ZZZ This has an easy fix, dont do whatever I was doing, and just mod...
     #ZZZ we have a magic number in determining the length of the key. This
     #ZZZ length may be a fix to some issues for me.
     # Generates a random int and returns as a string to represent the queens
@@ -57,9 +58,10 @@ class NQueensBoard:
             temp_string = str(temp_int)
         return int(temp_string) % self.queen_count
 
-
+    #ZZZ This is pointless. Needs to be removed ;(
     # Makes a list of the queens in order of fitness. 
     def set_queen_priorities(self):
+        total_fitness = 0
         for i in range(0, self.queen_count):
             best_queen = self.queen_priority[i]
             for j in range(0, self.queen_count):
@@ -75,10 +77,11 @@ class NQueensBoard:
     #ZZZ Collision detecting is working! :)
     # Returns the number of collisions with other queens based on possible queen
     # movement
-    def get_queen_fitness(self):
+    def get_board_fitness(self):
         for i in range(0, self.queen_count):
             test_queen = self.queen_priority[i]
             queen_collisions = 0
+            
 
             #Test Horizontal #ZZZ Works!
             x = (test_queen.x_position +1) % self.queen_count
@@ -127,8 +130,10 @@ class NQueensBoard:
             #Give our queen her fitness count
             test_queen.set_fitness(float(queen_collisions) / self.queen_count)
         self.set_queen_priorities()
+        return queen_collisions
 
-        
+
+    #ZZZ Completely pointless, needs to be removed~
     # This will use cross-over and mutation to create new queen positions
     # for the 'unfit' queens
     def evolve_queens(self):
@@ -136,7 +141,7 @@ class NQueensBoard:
         pass
                     
             
-            
+    #ZZZ Completely pointless, needs to be removed.
     def queen_crossover(self, queen1, queen2):
         crossover_point = random_key.randint(0, len(queen1.y_key))
         new_key = queen1.y_key[:crossover_point]

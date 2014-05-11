@@ -20,6 +20,7 @@ class Queen:
         self.x_position = x_position
         self.y_position = y_position
 
+    #ZZZ Probably dont need fitness on queens at all~ ;)
     def set_fitness(self, fitness=0):
         self.fitness = fitness
 
