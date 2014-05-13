@@ -21,13 +21,14 @@ class NQueensBoard:
         self.board_key = str(board_key)
         if (self.board_key == "0"):
             self.board_key = self.random_set_up()
-        self.fitness = self.get_fitness()
-        print self.board_key#ZZZ
+        self.fitness = self.find_fitness()
+                
+    def get_fitness(self):
+        return self.fitness
         
-    
     def key_change(self, board_key):
         self.board_key = str(board_key)
-        self.fitness = self.get_fitness()
+        self.fitness = self.find_fitness()
 
     # Creates a randomly generated (string) board key and returns it.
     def random_set_up(self):
@@ -41,7 +42,7 @@ class NQueensBoard:
     # collisions each queen encounters.
     # NOTE: A float of 0 means there were no collisions and it is a solution
     # NOTE: A float of 1 means there were maximal collisions
-    def get_fitness(self):
+    def find_fitness(self):
         collisions = 0
         #Horizontal Detection
         for i in range(0, self.queen_count):
@@ -88,12 +89,7 @@ class NQueensBoard:
                 else:
                     row += "- "
             print row
-        
-        
-#board = NQueensBoard(8)
 
-#board.print_board()
-#print "The fitness is %f" % board.get_fitness()
     
     
 
