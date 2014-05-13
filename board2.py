@@ -14,28 +14,57 @@ import random
 class NQueensBoard:
 
     # Initializes the board, if no board key is given it will default to a
-    # random board key.
+    # random board key based on the queen_count.
+    # Initializes the fitness variable by default.
     def __init__(self, queen_count, board_key=0):
         self.queen_count = queen_count
-        self.board_key = board_key
-        if (self.board_key == 0):
-            self.board_key == random_set_up()
-            
+        self.board_key = str(board_key)
+        if (self.board_key == "0"):
+            self.board_key = self.random_set_up()
+        self.fitness = self.get_fitness()
+        print self.board_key#ZZZ
         
-        
-
-    def key_change(self, board_key):
-        self.board_key = board_key
-        self.fitness = self.board_key.get_fitness()
     
+    def key_change(self, board_key):
+        self.board_key = str(board_key)
+        #self.fitness = self.board_key.get_fitness()
+
+    # Creates a randomly generated (string) board key and returns it.
     def random_set_up(self):
         board = ""
         random_key = random.SystemRandom()
-        board = random_key.randint(0, 10 ** (self.queen_count-1))
-        return str(board)
-        
+        for i in range(0, self.queen_count):
+            board += str(random_key.randint(0, self.queen_count-1))
+        return board
+
+    def get_fitness(self):
+        collisions = 0
+        #horizontal
+        for i in range(0, self.queen_count):
+            pass
+
+        #vertical
+        return pass #Return some value based on the number of collisions
+
         
 
+    #Prints out a visual representation of this board.
+    def print_board(self):
+        for y in range(0, self.queen_count):
+            row = ""
+            for x in range(0, self.queen_count):
+                
+                
+                if (self.board_key[x] == str(y)):
+                    row += "Q "
+                else:
+                    row += "- "
+            print row
+        
+        
+board = NQueensBoard(8)
+board.key_change("01234567")
+board.print_board()
     
     
 
