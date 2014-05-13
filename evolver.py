@@ -31,6 +31,7 @@ class Evolver:
                                 key=lambda board: board.fitness)
 
     # This will continue to evolve the board until a solution is found.
+    # epochs counter is representative of how many generations it takes.
     def evolve_board(self):
         epochs = 0
         random_key = random.SystemRandom()
@@ -62,6 +63,9 @@ class Evolver:
         crossover_rate = 95
         while (random_key.randint < crossover_rate):
             crossover(self.roulette_wheel(), self.roulette_wheel())
+
+    def crossover(self, board1, board2):
+        pass
             
         
 
@@ -103,7 +107,7 @@ class Evolver:
             print self.board_list[i].fitness
 
 
-evolve = Evolver(10,4)
+evolve = Evolver(10,8)
 #evolve.contains_solution()
 evolve.evolve_board()
 
