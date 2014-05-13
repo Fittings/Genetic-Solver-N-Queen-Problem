@@ -73,7 +73,7 @@ class NQueensBoard:
                 if (int(self.board_key[i-j]) == test_key_down):
                     collisions += 1
                 j += 1
-        print "There were %d collisions" % collisions
+        
         return (collisions / float(self.queen_count**2 - self.queen_count))
 
         
@@ -90,10 +90,10 @@ class NQueensBoard:
             print row
         
         
-board = NQueensBoard(8)
+#board = NQueensBoard(8)
 
-board.print_board()
-print "The fitness is %f" % board.get_fitness()
+#board.print_board()
+#print "The fitness is %f" % board.get_fitness()
     
     
 
