@@ -36,9 +36,10 @@ class Evolver:
         epochs = 0
         random_key = random.SystemRandom()
         while not(self.contains_solution()):
+            #ZZZ
             #Mutate a board with 1/100 chance
-            while (random_key.randint(0, 1000) < 10):
-                self.mutate()
+            #while (random_key.randint(0, 1000) < 10):
+               # self.mutate()
 
             #Choose the best boards and combine them to create new boards
             self.repopulate()
@@ -48,13 +49,21 @@ class Evolver:
         print "Done in %d epochs" % epochs
 
     #Randomly moves queen on a random board
-    def mutate(self):
+    def mutate(self, board):
+        """board_key = list(self.board
+        
+        # Chance of mutation at each point
         random_key = random.SystemRandom()
+        for i in range
+        if (random_key.randint(0, 1000) > 10):
+        
+        
         random_board_no = random_key.randint(0, self.queen_count-1)
         board_key = list(self.board_list[random_board_no].board_key)
         random_index = random_key.randint(0, len(board_key)-1)
         board_key[random_index] = str(random_key.randint(0, self.queen_count-1))
-        self.board_list[random_board_no].key_change(''.join(board_key))
+        self.board_list[random_board_no].key_change(''.join(board_key))"""
+        pass
 
     # Repopulates the boards.
     # How often a single board can 'breed' is random-influenced by fitness
@@ -69,16 +78,28 @@ class Evolver:
         crossover_rate = 95    
         i = 0
         # Crossovers parent i and then the next parent in the list.
-        while (i < len(new_board_list)):
+        while (i < len(self.board_list)):
             if (random_key.randint < crossover_rate):
                 j = (i+1) % len(new_board_list) #Uses mod for non-even len lists
-                new_board_list[i] = crossover(i, j)
-                new_board_list[i+1] = crossover(j, i)
+                new_board_list[i].append(board2.NQueensBoard(self.queen_count
+                                                             , crossover(i, j))
+                new_board_list[i+1].append(board2.NQueensBoard(self.queen_count
+                                                               ,crossover(j, i))
             i += 2
                 
-            
+
+    # This exists so I can easily change what type of crossover is used.
     def crossover(self, board1, board2):
-        pass
+        return single_crossover(board1, board2)
+
+
+    # Single point crossover
+    def single_crossover(self, board1, board2):
+        crossover_point = random.SystemRandom().randint(0, len(board1)-1)
+        new_board = board1[:crossover_point]
+        new_board += board2[crossover_point:]
+        print new_board
+        return new_board
             
         
 
