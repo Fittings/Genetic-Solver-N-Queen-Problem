@@ -22,10 +22,9 @@ class NQueensBoard:
         if (self.board_key == "0"):
             self.board_key = self.random_set_up()
         self.fitness = self.find_fitness()
-                
-    def get_fitness(self):
-        return self.fitness
-        
+    
+    
+    # Changes the board_key and updates the fitness value    
     def key_change(self, board_key):
         self.board_key = str(board_key)
         self.fitness = self.find_fitness()
@@ -51,8 +50,8 @@ class NQueensBoard:
                 if (self.board_key[i] == self.board_key[j]):
                     collisions += 1
                 j = (j+1) % self.queen_count
+                
         #Vertical Detection
-        
         for i in range(0, self.queen_count):
             j = 1
             # -Up Right and Down Right 
