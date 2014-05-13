@@ -39,12 +39,18 @@ class NQueensBoard:
 
     def get_fitness(self):
         collisions = 0
-        #horizontal
+        """#Horizontal Detection
         for i in range(0, self.queen_count):
-            pass
+            j = (i+1) % self.queen_count
+            while (i != j):
+                if (self.board_key[i] == self.board_key[j]):
+                    collisions += 1
+                j = (j+1) % self.queen_count"""
+        #Vertical Detection
+        
 
-        #vertical
-        return pass #Return some value based on the number of collisions
+        
+        return collisions #Return some value based on the number of collisions
 
         
 
@@ -53,8 +59,6 @@ class NQueensBoard:
         for y in range(0, self.queen_count):
             row = ""
             for x in range(0, self.queen_count):
-                
-                
                 if (self.board_key[x] == str(y)):
                     row += "Q "
                 else:
@@ -63,7 +67,8 @@ class NQueensBoard:
         
         
 board = NQueensBoard(8)
-board.key_change("01234567")
+#board.key_change("01234567")
+print "Collisions are %d" % board.get_fitness()
 board.print_board()
     
     
