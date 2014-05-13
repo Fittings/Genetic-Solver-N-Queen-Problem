@@ -59,11 +59,24 @@ class Evolver:
     # Repopulates the boards.
     # How often a single board can 'breed' is random-influenced by fitness
     def repopulate(self):
+        # Create an intermediate population based on roulette
+        new_board_list = []
+        for i in range(0, self.board_quantity - 1):
+            new_board_list.append(self.roulette_wheel())
+            
+        # Perform crossovers with 2 parents with a particular crossover rate
         random_key = random.SystemRandom()
-        crossover_rate = 95
-        while (random_key.randint < crossover_rate):
-            crossover(self.roulette_wheel(), self.roulette_wheel())
-
+        crossover_rate = 95    
+        i = 0
+        # Crossovers parent i and then the next parent in the list.
+        while (i < len(new_board_list)):
+            if (random_key.randint < crossover_rate):
+                j = (i+1) % len(new_board_list) #Uses mod for non-even len lists
+                new_board_list[i] = crossover(i, j)
+                new_board_list[i+1] = crossover(j, i)
+            i += 2
+                
+            
     def crossover(self, board1, board2):
         pass
             
@@ -107,7 +120,7 @@ class Evolver:
             print self.board_list[i].fitness
 
 
-evolve = Evolver(10,8)
+evolve = Evolver(11,4)
 #evolve.contains_solution()
 evolve.evolve_board()
 
