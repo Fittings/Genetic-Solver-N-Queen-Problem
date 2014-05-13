@@ -1,13 +1,5 @@
 
-2) Need to have a way of keep our 'best' queens and replacing the 'worst' queens with a cross-over / mutation combo
+2) Create a class to handle lots of boards
 
-3) Need to implement a cross-over between parents (uniquely) and also mutate
+3) Start working on evolving the boards.
 
-
-
-======
-
-X) To fix an error with the n-queen problems 0f 25-99~. 250-999~, etc...
-##I suggest increasing the length of the key by a way higher value than what I have previously been increasing it by.
-##This does work, but the number has to be increased by such a significant amount that it is NOT a worthwhile approach to fixing lifes problems.
-To fix this I will need to look at the under-lying string which represents the number and calculate it differently. However it isn't overly neccessary so dw! (4now)

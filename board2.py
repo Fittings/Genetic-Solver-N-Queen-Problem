@@ -27,7 +27,7 @@ class NQueensBoard:
     
     def key_change(self, board_key):
         self.board_key = str(board_key)
-        #self.fitness = self.board_key.get_fitness()
+        self.fitness = self.get_fitness()
 
     # Creates a randomly generated (string) board key and returns it.
     def random_set_up(self):
@@ -37,19 +37,24 @@ class NQueensBoard:
             board += str(random_key.randint(0, self.queen_count-1))
         return board
 
+    # Evaluates and returns the fitness of the board by assessing how many
+    # collisions each queen encounters.
+    # NOTE: A float of 0 means there were no collisions and it is a solution
+    # NOTE: A float of 1 means there were maximal collisions
     def get_fitness(self):
         collisions = 0
-        """#Horizontal Detection
+        #Horizontal Detection
         for i in range(0, self.queen_count):
             j = (i+1) % self.queen_count
             while (i != j):
                 if (self.board_key[i] == self.board_key[j]):
                     collisions += 1
-                j = (j+1) % self.queen_count"""
+                j = (j+1) % self.queen_count
         #Vertical Detection
-        # -Up Right and Down Right 
+        
         for i in range(0, self.queen_count):
             j = 1
+            # -Up Right and Down Right 
             while (i+j < self.queen_count):
                 test_key_up = int(self.board_key[i]) - j
                 test_key_down = int(self.board_key[i]) + j
@@ -58,14 +63,18 @@ class NQueensBoard:
                 if (int(self.board_key[i+j]) == test_key_down):
                     collisions += 1
                 j += 1
-                
-                
-            
-                
-        
-
-        
-        return collisions #Return some value based on the number of collisions
+            # -Up Left and Down Left
+            j = 1
+            while (i-j >= 0):
+                test_key_up = int(self.board_key[i]) - j
+                test_key_down = int(self.board_key[i]) + j
+                if (int(self.board_key[i-j]) == test_key_up):
+                    collisions += 1
+                if (int(self.board_key[i-j]) == test_key_down):
+                    collisions += 1
+                j += 1
+        print "There were %d collisions" % collisions
+        return (collisions / float(self.queen_count**2 - self.queen_count))
 
         
 
@@ -81,11 +90,10 @@ class NQueensBoard:
             print row
         
         
-board = NQueensBoard(4)
-#board.key_change("01234567")
+board = NQueensBoard(8)
 
 board.print_board()
-print "Collisions are %d" % board.get_fitness()
+print "The fitness is %f" % board.get_fitness()
     
     
 
