@@ -4,29 +4,39 @@
 # n-Queen Problem - cosc343 assignment 2
 
 import random
-import queen
+
+
+
+# Creates a board for the n-Queens Problem.
+# This is only suitable for a queen count of max 10. (Change key implementation
+# for a better fix)
 
 class NQueensBoard:
 
-    
-    def __init__(self, queen_count=0):
-        print "\nThis is the %d-Queen Problem!\n" % self.queen_count
+    # Initializes the board, if no board key is given it will default to a
+    # random board key.
+    def __init__(self, queen_count, board_key=0):
         self.queen_count = queen_count
-        self.random_set_up()
+        self.board_key = board_key
+        if (self.board_key == 0):
+            self.board_key == random_set_up()
+            
+        
+        
 
+    def key_change(self, board_key):
+        self.board_key = board_key
+        self.fitness = self.board_key.get_fitness()
+    
     def random_set_up(self):
-        self.board = []
-        for x in range(0, self.queen_count):
-            x_list = []
-            queen_y = get_queen_position()
-            for y in range(0, self.queen_count):
-                if (y == queen_y):
-                    x_list.append(1)
-                else:
-                    x_list.append(0)
-            self.board.append(x_list)
-
-    def get_queen_position(self):
+        board = ""
         random_key = random.SystemRandom()
-        position = random_key.randint(0, self.queen_count * 10)
-        return position % self.queen_count
+        board = random_key.randint(0, 10 ** (self.queen_count-1))
+        return str(board)
+        
+        
+
+    
+    
+
+    
