@@ -47,6 +47,21 @@ class NQueensBoard:
                     collisions += 1
                 j = (j+1) % self.queen_count"""
         #Vertical Detection
+        # -Up Right and Down Right 
+        for i in range(0, self.queen_count):
+            j = 1
+            while (i+j < self.queen_count):
+                test_key_up = int(self.board_key[i]) - j
+                test_key_down = int(self.board_key[i]) + j
+                if (int(self.board_key[i+j]) == test_key_up):
+                    collisions += 1
+                if (int(self.board_key[i+j]) == test_key_down):
+                    collisions += 1
+                j += 1
+                
+                
+            
+                
         
 
         
@@ -66,10 +81,11 @@ class NQueensBoard:
             print row
         
         
-board = NQueensBoard(8)
+board = NQueensBoard(4)
 #board.key_change("01234567")
-print "Collisions are %d" % board.get_fitness()
+
 board.print_board()
+print "Collisions are %d" % board.get_fitness()
     
     
 
