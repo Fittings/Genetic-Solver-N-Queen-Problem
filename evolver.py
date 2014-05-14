@@ -16,7 +16,8 @@ class Evolver:
     def __init__(self, board_quantity=4, queen_count=8):
         self.queen_count = queen_count
         self.board_quantity = board_quantity
-        print "This is the %d-Queen-Problem\t" % self.queen_count
+        print "Finding a solution to the %d-Queen-Problem\t" % self.queen_count
+        print "...\n"
         self.board_list = []
         for i in range(0, board_quantity):
             self.board_list.append(board2.NQueensBoard(self.queen_count))
@@ -46,8 +47,10 @@ class Evolver:
             self.fitness_sort()
             #print epochs
             epochs += 1
+        print "Found!\n"
         self.board_list[0].print_board()
-        print "Done in %d epochs" % epochs
+        print "\nDone in %d epochs\n" % epochs
+        return epochs
 
         
     # Randomly mutates a board key. With a set chance at each point
@@ -89,10 +92,11 @@ class Evolver:
 
     # This exists so I can easily change what type of crossover is used.
     def crossover(self, board_index1, board_index2):
-        return self.single_crossover(board_index1, board_index2)
+        #return self.single_crossover(board_index1, board_index2)
+        return self.double_crossover(board_index1, board_index2)
 
 
-    # Single point crossover
+    # Single point crossover between two board objects.
     def single_crossover(self, board_i1, board_i2):
         rnd = random.SystemRandom()
         crossover_point = rnd.randint(0, len(
@@ -100,12 +104,23 @@ class Evolver:
 
         new_board_key = self.board_list[board_i1].board_key[:crossover_point]
         new_board_key += self.board_list[board_i2].board_key[crossover_point:]
-        #print type(new_board)
         new_board_key = self.mutate(new_board_key)
-        #print new_board_key
         return board2.NQueensBoard(self.queen_count, new_board_key)
-            
+
+    # Two point crossover between two board objects
+    def double_crossover(self, board_i1, board_i2):
+        rnd = random.SystemRandom()
+        crossover_point1 = rnd.randint(0, len(
+            self.board_list[board_i1].board_key)-1)
+        crossover_point2 = rnd.randint(crossover_point1, len(
+            self.board_list[board_i1].board_key)-1)
         
+        new_board_key = self.board_list[board_i1].board_key[:crossover_point1]
+        new_board_key += self.board_list[board_i2].board_key[
+            crossover_point1:crossover_point2]
+        new_board_key += self.board_list[board_i1].board_key[crossover_point2:]
+        new_board_key = self.mutate(new_board_key)
+        return board2.NQueensBoard(self.queen_count, new_board_key)
 
     # Returns an index for the board choosen by the roulette wheel
     # This favours the boards with higher fitness
@@ -148,10 +163,6 @@ class Evolver:
             counter += 1
             print self.board_list[i].fitness
             
-
-
-evolve = Evolver(10,8)
-evolve.evolve_board()
 
 
 
