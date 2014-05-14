@@ -43,7 +43,8 @@ class Evolver:
 
             #Choose the best boards and combine them to create new boards
             self.repopulate()
-            print epochs
+            self.fitness_sort()
+            #print epochs
             epochs += 1
         self.board_list[0].print_board()
         print "Done in %d epochs" % epochs
@@ -51,6 +52,14 @@ class Evolver:
         
     # Randomly mutates a board key. With a set chance at each point
     def mutate(self, board_key):
+        list_board_key = list(board_key)
+        random_key = random.SystemRandom()
+        mutation_chance = 10 #Mutation Chance / 1000
+        for i in range(0, len(list_board_key)):
+            if (mutation_chance > random_key.randint(0, 1000)):
+                list_board_key[i] = str(
+                    random_key.randint(0, self.queen_count-1))
+        return ''.join(list_board_key)
         
 
 
@@ -92,8 +101,8 @@ class Evolver:
         new_board_key = self.board_list[board_i1].board_key[:crossover_point]
         new_board_key += self.board_list[board_i2].board_key[crossover_point:]
         #print type(new_board)
-        self.mutate(new_board_key)
-        print new_board_key
+        new_board_key = self.mutate(new_board_key)
+        #print new_board_key
         return board2.NQueensBoard(self.queen_count, new_board_key)
             
         
@@ -132,12 +141,16 @@ class Evolver:
         
     # Prints the board list as a fitness value
     def print_board_list(self):
+        average = 0
+        counter = 0
         for i in range(0, len(self.board_list)):
+            average += self.board_list[i].fitness
+            counter += 1
             print self.board_list[i].fitness
+            
 
 
-evolve = Evolver(40,6)
-#evolve.contains_solution()
+evolve = Evolver(10,8)
 evolve.evolve_board()
 
 
