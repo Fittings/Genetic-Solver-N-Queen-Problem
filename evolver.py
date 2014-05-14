@@ -34,7 +34,7 @@ class Evolver:
     # epochs counter is representative of how many generations it takes.
     def evolve_board(self):
         epochs = 0
-        random_key = random.SystemRandom()
+        #random_key = random.SystemRandom()
         while not(self.contains_solution()):
             #ZZZ
             #Mutate a board with 1/100 chance
@@ -43,63 +43,58 @@ class Evolver:
 
             #Choose the best boards and combine them to create new boards
             self.repopulate()
-                
+            print epochs
             epochs += 1
         self.board_list[0].print_board()
         print "Done in %d epochs" % epochs
 
-    #Randomly moves queen on a random board
-    def mutate(self, board):
-        """board_key = list(self.board
         
-        # Chance of mutation at each point
-        random_key = random.SystemRandom()
-        for i in range
-        if (random_key.randint(0, 1000) > 10):
+    # Randomly mutates a board key. With a set chance at each point
+    def mutate(self, board_key):
         
-        
-        random_board_no = random_key.randint(0, self.queen_count-1)
-        board_key = list(self.board_list[random_board_no].board_key)
-        random_index = random_key.randint(0, len(board_key)-1)
-        board_key[random_index] = str(random_key.randint(0, self.queen_count-1))
-        self.board_list[random_board_no].key_change(''.join(board_key))"""
-        pass
+
 
     # Repopulates the boards.
     # How often a single board can 'breed' is random-influenced by fitness
     def repopulate(self):
         # Create an intermediate population based on roulette
         new_board_list = []
-        for i in range(0, self.board_quantity - 1):
+        for i in range(0, self.board_quantity):
             new_board_list.append(self.roulette_wheel())
             
+        
         # Perform crossovers with 2 parents with a particular crossover rate
         random_key = random.SystemRandom()
         crossover_rate = 95    
         i = 0
         # Crossovers parent i and then the next parent in the list.
-        while (i < len(self.board_list)):
-            if (random_key.randint < crossover_rate):
+        while (i < len(new_board_list)):
+            if (random_key.randint(0, 100) < crossover_rate):
                 j = (i+1) % len(new_board_list) #Uses mod for non-even len lists
-                new_board_list[i].append(board2.NQueensBoard(self.queen_count
-                                                             , crossover(i, j))
-                new_board_list[i+1].append(board2.NQueensBoard(self.queen_count
-                                                               ,crossover(j, i))
+                new_board_list[i] = self.crossover(i, j)
+                new_board_list[j] = self.crossover(j, i)
             i += 2
+        
+        self.board_list = new_board_list
                 
 
     # This exists so I can easily change what type of crossover is used.
-    def crossover(self, board1, board2):
-        return single_crossover(board1, board2)
+    def crossover(self, board_index1, board_index2):
+        return self.single_crossover(board_index1, board_index2)
 
 
     # Single point crossover
-    def single_crossover(self, board1, board2):
-        crossover_point = random.SystemRandom().randint(0, len(board1)-1)
-        new_board = board1[:crossover_point]
-        new_board += board2[crossover_point:]
-        print new_board
-        return new_board
+    def single_crossover(self, board_i1, board_i2):
+        rnd = random.SystemRandom()
+        crossover_point = rnd.randint(0, len(
+            self.board_list[board_i1].board_key)-1)
+
+        new_board_key = self.board_list[board_i1].board_key[:crossover_point]
+        new_board_key += self.board_list[board_i2].board_key[crossover_point:]
+        #print type(new_board)
+        self.mutate(new_board_key)
+        print new_board_key
+        return board2.NQueensBoard(self.queen_count, new_board_key)
             
         
 
@@ -118,8 +113,8 @@ class Evolver:
         i = 0
         while not(fitness_sum > random_select):
             fitness_sum += self.board_list[i].fitness
-            i += 1
-        return i
+            i += (i + 1) % self.queen_count-1
+        return self.board_list[i]
         
 
  
@@ -141,7 +136,7 @@ class Evolver:
             print self.board_list[i].fitness
 
 
-evolve = Evolver(11,4)
+evolve = Evolver(40,6)
 #evolve.contains_solution()
 evolve.evolve_board()
 
