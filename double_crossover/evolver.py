@@ -16,8 +16,6 @@ class Evolver:
     def __init__(self, board_quantity=4, queen_count=8):
         self.queen_count = queen_count
         self.board_quantity = board_quantity
-        print "Finding a solution to the %d-Queen-Problem\t" % self.queen_count
-        print "...\n"
         self.board_list = []
         for i in range(0, board_quantity):
             self.board_list.append(board2.NQueensBoard(self.queen_count))
@@ -34,23 +32,17 @@ class Evolver:
     # This will continue to evolve the board until a solution is found.
     # epochs counter is representative of how many generations it takes.
     def evolve_board(self):
-        epochs = 0
-        #random_key = random.SystemRandom()
+        self.epochs = 0
         while not(self.contains_solution()):
-            #ZZZ
-            #Mutate a board with 1/100 chance
-            #while (random_key.randint(0, 1000) < 10):
-               # self.mutate()
-
+            if (self.epochs > 500):
+                return False
             #Choose the best boards and combine them to create new boards
             self.repopulate()
             self.fitness_sort()
-            #print epochs
-            epochs += 1
-        print "Found!\n"
+            self.epochs += 1
+        
         self.board_list[0].print_board()
-        print "\nDone in %d epochs\n" % epochs
-        return epochs
+        return True
 
         
     # Randomly mutates a board key. With a set chance at each point
@@ -94,6 +86,7 @@ class Evolver:
     def crossover(self, board_index1, board_index2):
         #return self.single_crossover(board_index1, board_index2)
         return self.double_crossover(board_index1, board_index2)
+        #return self.uniform_crossover(board_index1, board_index2)
 
 
     # Single point crossover between two board objects.
@@ -121,6 +114,19 @@ class Evolver:
         new_board_key += self.board_list[board_i1].board_key[crossover_point2:]
         new_board_key = self.mutate(new_board_key)
         return board2.NQueensBoard(self.queen_count, new_board_key)
+
+    # Performs a uniform crossover betweem two board objects
+    def uniform_crossover(self, board_i1, board_i2):
+        rnd = random.SystemRandom()
+        new_board_key = ''
+        for i in range(0, len(self.board_list[0].board_key)):
+            if (rnd.randint(0,1) == 0):
+                new_board_key += self.board_list[board_i1].board_key[i]
+            else:
+                new_board_key += self.board_list[board_i2].board_key[i]
+        new_board_key = self.mutate(new_board_key)
+        return board2.NQueensBoard(self.queen_count, new_board_key)
+        
 
     # Returns an index for the board choosen by the roulette wheel
     # This favours the boards with higher fitness
