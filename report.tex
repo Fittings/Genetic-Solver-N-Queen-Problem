@@ -1,8 +1,8 @@
 \documentclass[a4paper,11pt]{article}
 \usepackage{a4wide}
 %\usepackage{savetrees}
-%\pagestyle{empty} % no page numbers
-%\pagenumbering{gobble}  % really, no page numbers!
+%\pagestyle{empty} % is this
+%\pagenumbering{gobble}  % is this
 
 \title{COSC343 Assignment 2: n-Queens-Problem}
 \author{Cameron Milsom}
@@ -32,10 +32,37 @@ For my crossover function between parents I tried multiple functions to see if t
 However, the program doesn't run at a speed fast enough to easily record a large quantity of values to find what algorithm is best.
 To solve this, I tested these algorithms on a slightly lower n-value which can find solutions at a significantly faster rate.
 
+What I found was that single crossover was the code that took the least amount of generations. Using the 5-queen problem, I found that over 1000 solutions found, I was averaging 18 epochs for single, 26 epochs for double, 19 epochs for uniform. The results are interesting as I wouldn't expect such a significant difference between single and double. It is dissapointing however that uniform was almost the same as single.
+
 \subsubsection*{Single Point Crossover}
+The single point crossover takes a random point from the two parents and makes a child that is a combination of both.
+
 
 \subsubsection*{Double Point Crossover}
+The double point crossover takes a random section out of one of the parents and replaces the middle section of the other parents to make a new child.
+
+
 \subsubsection*{Uniform Crossover}
+The uniform crossover goes through each position of the binary board key and chooses randomly which parent it takes that value from.
+
+
+\subsection*{Restart}
+While my code never needs to restart as it seems to always find a solution. I decided to implement a restart algorithm. This required some playing around with to test which values result in better performance.
+I started with a value of around 300 generations of the population before killing and making a new population. This gave me better results than when I was leaving it indefinitely.
+After some further testing I found out that it's best to have a value of around
+about #ZZZ
+
+
+\section*{Other Performance Enhancers}
+There were some other techniques that I used to try increase the performance of my n queen solution finder.
+
+\section*{Future Improvements}
+\subsection*{Original Design Mistakes}
+There are definitely improvements that I would like to have tried. One of the issues with my board implementation is that it will only function up to and including a 10-queen problem. This is because I represent my boards as strings. I chose this way because thats how I had previously approached this task in the lab. However if I used a list, I feel there would have been some performance increases as I had to often convert the string into a list to mutate/modify and then back again to a string to recreate the board object.
+
+\subsection*{Selection Process}
+One approach I was interested in trying but never completed was the Tournament Selection process. This would have been an interesting selection choice as it's possible to change the size of the tournament. This allows for a 'selection pressure' where we can change how likely it is for the less fit boards to be choosen.
+
 
 
 
