@@ -7,7 +7,8 @@ import random
 import board2
 
 
-#This is used to control the board
+# This is used to evolve the board and find a solution that has a fitness value
+# of 0. Hence being a solution to the n-Queens problem. 
 class Evolver:
 
     # Initializes the lists of boards. Quantity of board and n value

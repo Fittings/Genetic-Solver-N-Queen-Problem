@@ -1,6 +1,7 @@
 \documentclass[a4paper,11pt]{article}
 \usepackage{a4wide}
 %\usepackage{savetrees}
+%\usepackage{graphicx}
 %\pagestyle{empty} % is this
 %\pagenumbering{gobble}  % is this
 
@@ -24,6 +25,14 @@ The code I had written was vaguely correct and a long the right lines, however t
 
 \section*{Algorithms}
 
+\subsection*{Initializing}
+I start creating my boards by making a list of random board (where each queen is on a seperate x-axis. These boards all contain a board key which represents all the positions of the queens on that particular board.
+
+\subsection*{Repopulating}
+This works by taking the list of board, making an intermediate generation of the list by using selection. Then using a crossover mechanism to create the new generation.
+Its worth noting that there is also a mutation mechanism built into the crossover functions.
+Finally the population is checked for a perfect solution. This process is repeated until a perfect solution is found and then it is completed.
+
 \subsection*{Selection}
 I decided to go with Roulette Wheel selection. The roulette selection is designed so that it favours boards that have lower fitness values. The variation in fitness of the boards is not so significant that a particular board will be selected for the majority of the population. This makes it a decent fit for my genetic algorithm.
 
@@ -45,16 +54,22 @@ The double point crossover takes a random section out of one of the parents and 
 \subsubsection*{Uniform Crossover}
 The uniform crossover goes through each position of the binary board key and chooses randomly which parent it takes that value from.
 
+\subsection*{Mutation}
+There is also a mutation mechanism that goes through the board key and at each index (representing the x, y value) has a chance of modifying it. After continuously modifying this number, I found that the best result was roughly 1/100 chance.
 
 \subsection*{Restart}
 While my code never needs to restart as it seems to always find a solution. I decided to implement a restart algorithm. This required some playing around with to test which values result in better performance.
 I started with a value of around 300 generations of the population before killing and making a new population. This gave me better results than when I was leaving it indefinitely.
 After some further testing I found out that it's best to have a value of around
-about #ZZZ
+about 500. Often it would complete in less than 500 epochs, so reseting it around this point enabled to skip the long times being stuck on poor board choices
 
 
 \section*{Other Performance Enhancers}
 There were some other techniques that I used to try increase the performance of my n queen solution finder.
+
+\section*{Graph}
+#I wasn't able to insert the graph into the pdf. But its there! mygraph.png
+The graph that was produced wasn't particularly interesting. The graph shows that the most optimal solution rapidly changes over the first 50~ generations and then it doesn't change much till the perfect solution is found. This is because of my fitness having only so many possible 'fitness' values rather than truly being [0,1].
 
 \section*{Future Improvements}
 \subsection*{Original Design Mistakes}
@@ -62,7 +77,6 @@ There are definitely improvements that I would like to have tried. One of the is
 
 \subsection*{Selection Process}
 One approach I was interested in trying but never completed was the Tournament Selection process. This would have been an interesting selection choice as it's possible to change the size of the tournament. This allows for a 'selection pressure' where we can change how likely it is for the less fit boards to be choosen.
-
 
 
 

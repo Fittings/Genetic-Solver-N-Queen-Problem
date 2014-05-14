@@ -34,7 +34,7 @@ class Evolver:
     def evolve_board(self):
         self.epochs = 0
         while not(self.contains_solution()):
-            if (self.epochs > 500):
+            if (self.epochs > 600):
                 return False
             #Choose the best boards and combine them to create new boards
             self.repopulate()

@@ -3,6 +3,14 @@
 #Cameron Milsom - May 2014
 # n-Queen Problem - cosc343 assignment 2
 
+
+#This is a simple app to run the main program and extract relevant infomation
+#For anything interesting read evolver.py
+#Basically, this asks for how many non-unique solutions we want to find
+#and then finds the solutions while keep tracking of how many
+#generations (epochs) and while also keeping a list of the best fitness values
+#per generation
+
 import evolver
 
 population = 40
@@ -12,6 +20,8 @@ queen_count = 8
 sol_count = int(raw_input(
     "How many times will we run the %d-queens solution finder?\n" % queen_count))
 
+#Any unused value has been set up for testing purposes. My app is pretty messy
+#but it isn't really the main part of the code.
 i = 0
 epochs_list = []
 total_epochs = 0
