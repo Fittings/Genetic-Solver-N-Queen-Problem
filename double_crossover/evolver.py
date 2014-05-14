@@ -92,8 +92,8 @@ class Evolver:
 
     # This exists so I can easily change what type of crossover is used.
     def crossover(self, board_index1, board_index2):
-        return self.single_crossover(board_index1, board_index2)
-        #return self.double_crossover(board_index1, board_index2)
+        #return self.single_crossover(board_index1, board_index2)
+        return self.double_crossover(board_index1, board_index2)
 
 
     # Single point crossover between two board objects.

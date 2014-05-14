@@ -5,8 +5,8 @@
 
 import evolver
 
-population = 11
-queen_count =10
+population = 10
+queen_count = 8
 
 
 sol_count = int(raw_input(
@@ -29,7 +29,7 @@ epochs_list = sorted(epochs_list)
 average = round(total_epochs / float(i))
 lowest = epochs_list[0]
 highest = epochs_list[len(epochs_list)-1]
-file = open('singlecrossover', 'w')
+file = open('doublecrossover', 'w')
 file.write("#####\n")
 file.write("average: " + str(average))
 file.write("\n#####\n")

@@ -5,8 +5,8 @@
 
 import evolver
 
-population = 11
-queen_count =10
+population = 10
+queen_count = 8
 
 
 sol_count = int(raw_input(
